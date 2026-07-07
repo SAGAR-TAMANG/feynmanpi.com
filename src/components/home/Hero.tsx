@@ -1,74 +1,109 @@
-import heroImage from "../../assets/dithering-effect-hero.png";
+import { SIDE_PROJECTS, SOCIAL_LINKS } from "../../data/projects";
+import type { SideProject } from "../../types";
+
+function Pill({ project }: { project: SideProject }) {
+  return (
+    <a
+      href={project.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 rounded-md bg-custom-ink px-2.5 py-1 align-middle text-[0.9em] leading-none text-custom-bg no-underline transition-transform duration-200 hover:-translate-y-0.5"
+    >
+      <span
+        className="size-3 rounded-full"
+        style={{ background: "linear-gradient(135deg, #f2f1ec 48%, #555 52%)" }}
+      />
+      {project.name}
+    </a>
+  );
+}
 
 export function Hero() {
   return (
-    <section className="relative min-h-[100svh] flex flex-col justify-between py-[clamp(1.5rem,4vw,3rem)] px-[clamp(1.5rem,6vw,5rem)] overflow-hidden font-pixelify">
-      {/* Radial vignette */}
-      <div
-        className="absolute inset-0 pointer-events-none z-10"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 80% at 55% 50%, transparent 30%, rgba(8,8,6,0.7) 100%)",
-        }}
-      />
+    <main className="mx-auto flex min-h-[100svh] max-w-[1240px] items-center px-[clamp(1.5rem,6vw,5rem)] py-[clamp(2rem,6vw,4rem)]">
+      <div className="relative grid w-full grid-cols-1 items-center gap-[clamp(2rem,6vw,4rem)] md:grid-cols-[1.05fr_0.95fr]">
+        {/* white halo circle — centered between the two columns, behind everything */}
+        <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 size-[clamp(280px,36vw,460px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
 
-      {/* Hero image – centered, dithered */}
-      <div className="absolute inset-0 flex items-center justify-center z-0">
-        <img
-          src={heroImage}
-          alt=""
-          className="dither-img opacity-88 w-[clamp(320px,72vw,900px)] h-auto"
-          style={{
-            maskImage:
-              "radial-gradient(ellipse 55% 52% at 50% 50%, black 40%, transparent 100%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 55% 52% at 50% 50%, black 40%, transparent 100%)",
-          }}
-        />
-      </div>
+        {/* ── Left column ─────────────────────────────── */}
+        <div className="relative z-10 order-2 md:order-1">
+          <h1 className="fade-up text-[clamp(3rem,7vw,5.25rem)] font-medium leading-[0.95] tracking-[-0.01em]">
+            i build stuff.
+          </h1>
 
-      {/* Top bar */}
-      <header className="fade-up relative z-20 flex justify-between items-start">
-        <div className="text-[clamp(1.2rem,2.8vw,1.6rem)] tracking-[0.2em]">
-          FEYNMAN PI
+          <p className="fade-up delay-1 mt-8 max-w-[26rem] text-[clamp(1.05rem,1.4vw,1.3rem)] leading-relaxed">
+            feynmanpi.com is the official playground of{" "}
+            <strong className="font-semibold">sagar_builds</strong>.
+          </p>
+
+          <p className="fade-up delay-2 mt-6 max-w-[28rem] text-[clamp(1.05rem,1.4vw,1.3rem)] leading-[2]">
+            my side projects are hosted on feynmanpi. like:{" "}
+            {SIDE_PROJECTS.map((p) => (
+              <span key={p.name} className="mr-1.5 whitespace-nowrap">
+                <Pill project={p} />
+              </span>
+            ))}
+            and many more.
+          </p>
+
+          <a
+            href="#projects"
+            className="fade-up delay-3 group relative mt-10 inline-flex items-center gap-3 text-[clamp(1.05rem,1.4vw,1.3rem)] no-underline"
+          >
+            <span className="absolute -left-4 top-1/2 -z-10 size-14 -translate-y-1/2 rounded-full bg-custom-halo transition-transform duration-300 group-hover:scale-110" />
+            <span>view all projects</span>
+            <svg
+              width="26"
+              height="12"
+              viewBox="0 0 26 12"
+              fill="none"
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            >
+              <path
+                d="M0 6h24M19 1l5 5-5 5"
+                stroke="currentColor"
+                strokeWidth="1.4"
+              />
+            </svg>
+          </a>
+
+          <nav className="fade-up delay-4 mt-16 flex flex-wrap items-center gap-x-3 gap-y-2 text-[clamp(1rem,1.3vw,1.2rem)] text-custom-dim">
+            {SOCIAL_LINKS.map((link, i) => (
+              <span key={link.name} className="flex items-center gap-x-3">
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-custom-fg underline decoration-custom-border underline-offset-4 transition-colors hover:decoration-custom-fg"
+                >
+                  {link.name}
+                </a>
+                {i < SOCIAL_LINKS.length - 1 && (
+                  <span className="text-custom-dim">/</span>
+                )}
+              </span>
+            ))}
+          </nav>
         </div>
-        <div className="text-[clamp(0.62rem,1.4vw,0.78rem)] text-right leading-[1.6] text-custom-dim tracking-[0.06em] lowercase">
-          on a mission to become
-          <br />
-          1000× engineer
+
+        {/* ── Right column ────────────────────────────── */}
+        {/* NOTE: no z-index / animation on this wrapper — it must not create a
+            stacking context, or the wordmark's mix-blend-difference gets
+            isolated from the page background and renders flat white. */}
+        <div className="relative order-1 flex h-[clamp(320px,44vw,560px)] items-center justify-center md:order-2">
+          {/* statue — placeholder, swap with the real cut-out */}
+          <img
+            src="/david.webp"
+            alt="Sculpted bust"
+            className="fade-up delay-1 relative z-20 h-full w-auto object-contain brightness-[0.45] contrast-[1.8] drop-shadow-[0_20px_40px_rgba(0,0,0,0.12)]"
+          />
+
+          {/* overlapping wordmark — in front of the statue, pass-through blend */}
+          <span className="pointer-events-none absolute left-1/2 top-1/2 z-30 w-[130%] -translate-x-1/2 -translate-y-1/2 text-center text-[clamp(2.25rem,5.5vw,4.25rem)] font-medium leading-none tracking-[-0.01em] text-white mix-blend-difference">
+            hello world.
+          </span>
         </div>
-      </header>
-
-      {/* Bottom left: title + scroll cue */}
-      <footer className="relative z-20 flex flex-col gap-[1.8rem]">
-        <h1 className="fade-up delay-2 text-[clamp(3.5rem,12vw,9rem)] leading-[0.88] tracking-[0.01em] uppercase">
-          PERSONAL
-          <br />
-          BUILDS
-        </h1>
-
-        {/* scroll nudge */}
-        <button
-          className="fade-up delay-3 scroll-cue bg-transparent border-none cursor-crosshair flex items-center gap-[0.75rem] text-custom-dim font-mono text-[0.6rem] tracking-[0.2em] self-start focus:outline-none"
-          onClick={() =>
-            document.getElementById("builds")?.scrollIntoView({ behavior: "smooth" })
-          }
-        >
-          <span>SCROLL TO EXPLORE</span>
-          <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
-            <path
-              d="M5 0v12M1 9l4 4 4-4"
-              stroke="currentColor"
-              strokeWidth="1.2"
-            />
-          </svg>
-        </button>
-      </footer>
-
-      {/* corner coordinates */}
-      <div className="absolute bottom-[clamp(1.5rem,4vw,3rem)] right-[clamp(1.5rem,6vw,5rem)] text-[0.58rem] tracking-[0.14em] text-custom-dim z-20 font-mono">
-        37.7749° N / 122.4194° W
       </div>
-    </section>
+    </main>
   );
 }

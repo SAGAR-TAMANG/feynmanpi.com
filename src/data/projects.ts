@@ -1,64 +1,15 @@
-import type { Project } from "../types";
+import type { SideProject } from "../types";
 
-export const PROJECTS: Project[] = [
-  // {
-  //   id: "01",
-  //   title: "VECTOR FIELD",
-  //   tag: "SIMULATION",
-  //   year: "2025",
-  //   desc: "Real-time fluid dynamics visualiser built on WebGL. 60fps particle systems reacting to cursor input.",
-  //   stack: ["WebGL", "GLSL", "TypeScript"],
-  //   status: "LIVE",
-  // },
-  // {
-  //   id: "02",
-  //   title: "LOGBOOK",
-  //   tag: "TOOL",
-  //   year: "2025",
-  //   desc: "Minimalist daily log CLI that syncs to plain-text markdown. No cloud, no account, no noise.",
-  //   stack: ["Rust", "SQLite", "Terminal"],
-  //   status: "LIVE",
-  // },
-  // {
-  //   id: "03",
-  //   title: "DIFFUSION LUT",
-  //   tag: "AI / VISUAL",
-  //   year: "2024",
-  //   desc: "Fine-tuned diffusion model that generates film-grade colour grading LUTs from text prompts.",
-  //   stack: ["Python", "PyTorch", "ONNX"],
-  //   status: "WIP",
-  // },
-  // {
-  //   id: "04",
-  //   title: "MESH RADIO",
-  //   tag: "HARDWARE",
-  //   year: "2024",
-  //   desc: "Off-grid LoRa mesh chat network. Encrypted messages hop between nodes with no internet.",
-  //   stack: ["C++", "LoRa", "Raspberry Pi"],
-  //   status: "LIVE",
-  // },
-  // {
-  //   id: "05",
-  //   title: "CODE LENS",
-  //   tag: "DEV TOOL",
-  //   year: "2024",
-  //   desc: "VS Code extension that overlays O(n) complexity annotations inline as you type.",
-  //   stack: ["TypeScript", "Tree-sitter", "VSCode API"],
-  //   status: "LIVE",
-  // },
-  // {
-  //   id: "06",
-  //   title: "EIGEN FACE",
-  //   tag: "ML RESEARCH",
-  //   year: "2023",
-  //   desc: "Interactive PCA face-space explorer. Drag sliders through eigenvectors in real time.",
-  //   stack: ["NumPy", "React", "Canvas API"],
-  //   status: "ARCHIVE",
-  // },
+/** Featured side projects shown as pills in the hero copy. */
+export const SIDE_PROJECTS: SideProject[] = [
+  { name: "friday", url: "https://friday.feynmanpi.com" },
+  { name: "frameseek", url: "https://frameseek.feynmanpi.com" },
 ];
 
-export const statusColor: Record<string, string> = {
-  LIVE: "#b4ff6f",
-  WIP: "#ffe066",
-  ARCHIVE: "#888",
-};
+/** Social / profile links shown in the hero footer row. */
+export const SOCIAL_LINKS: SideProject[] = [
+  { name: "sagar_builds", url: "https://github.com/SAGAR-TAMANG" },
+  { name: "instagram", url: "https://www.instagram.com/sagar_builds/" },
+  { name: "x", url: "https://x.com/sagar_builds" },
+  { name: "youtube", url: "https://www.youtube.com/@sagar_builds" },
+];

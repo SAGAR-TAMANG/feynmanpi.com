@@ -1,0 +1,20 @@
+<svg width="520" height="640" viewBox="0 0 520 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- PLACEHOLDER: swap for the real David bust cut-out (transparent PNG) -->
+  <defs>
+    <linearGradient id="stone" x1="140" y1="40" x2="420" y2="620" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2b2b2b"/>
+      <stop offset="0.55" stop-color="#141414"/>
+      <stop offset="1" stop-color="#060606"/>
+    </linearGradient>
+  </defs>
+  <!-- shoulders / bust -->
+  <path d="M120 640c0-120 55-190 140-205 85 15 140 85 140 205z" fill="url(#stone)"/>
+  <!-- neck -->
+  <path d="M215 400c0 55 12 95 45 110 33-15 45-55 45-110-30 18-60 18-90 0z" fill="url(#stone)"/>
+  <!-- head -->
+  <ellipse cx="260" cy="255" rx="118" ry="150" fill="url(#stone)"/>
+  <!-- hair mass -->
+  <path d="M150 210c-8-95 60-165 110-165s118 70 110 165c-18-55-60-88-110-88s-92 33-110 88z" fill="#0c0c0c"/>
+  <!-- subtle highlight -->
+  <ellipse cx="228" cy="230" rx="28" ry="52" fill="#3a3a3a" opacity="0.5"/>
+</svg>
